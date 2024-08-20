@@ -14,10 +14,10 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
+@Table(name = "user")
 public class User {
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
     String name;
     String username;

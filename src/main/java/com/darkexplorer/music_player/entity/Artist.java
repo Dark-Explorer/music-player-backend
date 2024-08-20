@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,15 +14,15 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
+@Table(name = "artist")
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
+    Long id;
     String name;
     String gender;
     int yob;
 
-    @ManyToMany(mappedBy = "artists")
-    Set<Song> songs;
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "artists")
+    Set<Song> songs = new HashSet<>();
 }

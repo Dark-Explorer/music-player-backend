@@ -8,11 +8,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
-public class UserResponse {
+public class ArtistResponse {
     Long id;
     String name;
-    String username;
-    String email;
-    String role;
+    String gender;
+    int yob;
 }

@@ -1,5 +1,6 @@
-package com.darkexplorer.music_player.dto.response;
+package com.darkexplorer.music_player.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -8,11 +9,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
-public class UserResponse {
-    Long id;
+public class ArtistRequest {
+    @NotBlank
     String name;
-    String username;
-    String email;
-    String role;
+    String gender;
+    int yob;
 }

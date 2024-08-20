@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,17 +14,21 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
+@Table(name = "song")
 public class Song {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     String title;
-    String sound;
+    String image;
+    String sound_link;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    Set<Artist> artists;
+    @ManyToMany
+    @JoinTable(name = "song_artist",
+            joinColumns = @JoinColumn(name = "song_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    Set<Artist> artists = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    Set<Playlist> playlists;
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "songs")
+    Set<Playlist> playlists = new HashSet<>();
 }
