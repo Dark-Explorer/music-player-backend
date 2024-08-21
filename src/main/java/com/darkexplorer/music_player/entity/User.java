@@ -1,6 +1,7 @@
 package com.darkexplorer.music_player.entity;
 
 
+import com.darkexplorer.music_player.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +24,7 @@ public class User {
     String username;
     String password;
     String email;
-    String role;
+    Role role;
 
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user", orphanRemoval = true)
     Set<Playlist> playlists;
