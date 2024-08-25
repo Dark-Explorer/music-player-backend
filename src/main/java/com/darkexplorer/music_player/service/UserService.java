@@ -44,8 +44,8 @@ public class UserService {
     @PostAuthorize("returnObject.username == authentication.name")
     public UserResponse editInfo(String userId, UserUpdateRequest request) {
         User user = userRepo.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(user.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setEmail(request.getEmail());
         user = userRepo.save(user);
         return userMapper.toUserResponse(user);
     }

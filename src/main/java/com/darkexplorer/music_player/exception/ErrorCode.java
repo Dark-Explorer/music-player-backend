@@ -16,6 +16,7 @@ public enum ErrorCode {
     EMAIL_EXISTED(703, "Email already in used!", HttpStatus.BAD_REQUEST),
     UNAUTHENTICATED(704, "Unauthenticated!", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(705, "You don't have permission", HttpStatus.FORBIDDEN),
+    SONG_NOT_FOUND(706, "Song not found!", HttpStatus.NOT_FOUND),
     ;
     private int code;
     private String message;

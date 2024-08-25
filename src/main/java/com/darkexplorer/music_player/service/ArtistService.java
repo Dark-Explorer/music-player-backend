@@ -3,6 +3,8 @@ package com.darkexplorer.music_player.service;
 import com.darkexplorer.music_player.dto.request.ArtistRequest;
 import com.darkexplorer.music_player.dto.response.ArtistResponse;
 import com.darkexplorer.music_player.entity.Artist;
+import com.darkexplorer.music_player.exception.AppException;
+import com.darkexplorer.music_player.exception.ErrorCode;
 import com.darkexplorer.music_player.mapper.ArtistMapper;
 import com.darkexplorer.music_player.repository.IArtistRepo;
 import lombok.AccessLevel;
@@ -34,7 +36,7 @@ public class ArtistService {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     public ArtistResponse editArtist(Long id, ArtistRequest request) {
-        Artist artist = artistRepo.findById(id).orElseThrow(() -> new RuntimeException("Artist not found"));
+        Artist artist = artistRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.ARTIST_NOT_FOUND));
         artist.setName(request.getName());
         artist.setGender(request.getGender());
         artist.setYob(request.getYob());

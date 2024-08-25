@@ -29,7 +29,8 @@ public class SecurityConfig {
             "/auth/refresh",
             "/auth/logout",
             "/auth/introspect",
-            "/artists/**"
+            "/artists/**",
+            "/songs/**"
     };
 
     private final String[] ADMIN_MATCHERS = {
