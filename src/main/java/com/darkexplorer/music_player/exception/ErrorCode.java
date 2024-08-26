@@ -17,6 +17,7 @@ public enum ErrorCode {
     UNAUTHENTICATED(704, "Unauthenticated!", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(705, "You don't have permission", HttpStatus.FORBIDDEN),
     SONG_NOT_FOUND(706, "Song not found!", HttpStatus.NOT_FOUND),
+    PLAYLIST_NOT_FOUND(707, "Playlist not found!", HttpStatus.NOT_FOUND),
     ;
     private int code;
     private String message;

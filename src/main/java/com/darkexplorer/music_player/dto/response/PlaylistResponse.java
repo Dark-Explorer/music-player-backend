@@ -1,6 +1,5 @@
 package com.darkexplorer.music_player.dto.response;
 
-import com.darkexplorer.music_player.entity.Artist;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,10 +10,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SongResponse {
+public class PlaylistResponse {
     Long id;
-    String title;
-    String image;
-    String sound_link;
-    Set<ArtistResponse> artists;
+    String name;
+    Set<SongResponse> songs;
 }

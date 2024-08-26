@@ -30,11 +30,15 @@ public class SecurityConfig {
             "/auth/logout",
             "/auth/introspect",
             "/artists/**",
-            "/songs/**"
+            "/songs/**",
     };
 
     private final String[] ADMIN_MATCHERS = {
 //            "/artist"
+    };
+
+    private final String[] AUTHENTICATED_MATCHERS = {
+
     };
 
     @Bean

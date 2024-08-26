@@ -10,7 +10,7 @@ import org.mapstruct.Named;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring", uses = {ArtistMapper.class})
+@Mapper(componentModel = "spring")
 public interface SongMapper {
     @Mapping(target = "artists", ignore = true)
     Song toSong(SongRequest request);
