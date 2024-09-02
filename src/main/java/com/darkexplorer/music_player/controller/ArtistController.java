@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/artists")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "http://localhost:5173")
 public class ArtistController {
     ArtistService artistService;
 
@@ -51,6 +52,13 @@ public class ArtistController {
     ApiResponse<List<ArtistResponse>> getArtistsByName(@PathVariable String artistName) {
         return ApiResponse.<List<ArtistResponse>>builder()
                 .result(artistService.getArtistByName(artistName))
+                .build();
+    }
+
+    @GetMapping("/{artistId}")
+    ApiResponse<ArtistResponse> getArtistById(@PathVariable Long artistId) {
+        return ApiResponse.<ArtistResponse>builder()
+                .result(artistService.getArtistById(artistId))
                 .build();
     }
 }

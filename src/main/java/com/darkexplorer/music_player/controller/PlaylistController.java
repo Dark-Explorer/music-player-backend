@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/playlists")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "http://localhost:5173")
 public class PlaylistController {
     PlaylistService playlistService;
 

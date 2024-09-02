@@ -20,7 +20,10 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String title;
+    @Lob
     String image;
+    @Column(length = 1024)
+    @Lob
     String sound_link;
 
     @ManyToMany

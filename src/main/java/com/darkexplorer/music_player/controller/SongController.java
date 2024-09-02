@@ -3,6 +3,7 @@ package com.darkexplorer.music_player.controller;
 import com.darkexplorer.music_player.dto.ApiResponse;
 import com.darkexplorer.music_player.dto.request.SongRequest;
 import com.darkexplorer.music_player.dto.response.SongResponse;
+import com.darkexplorer.music_player.entity.Song;
 import com.darkexplorer.music_player.service.SongService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,16 @@ import java.util.List;
 @RequestMapping("/songs")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "http://localhost:5173")
 public class SongController {
     SongService songService;
+
+    @GetMapping
+    ApiResponse<List<SongResponse>> getAllSongs() {
+        return ApiResponse.<List<SongResponse>>builder()
+                .result(songService.getAllSongs())
+                .build();
+    }
 
     @PostMapping
     ApiResponse<SongResponse> createSong(@RequestBody SongRequest request) {

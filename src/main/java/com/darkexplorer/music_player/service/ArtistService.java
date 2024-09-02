@@ -53,4 +53,9 @@ public class ArtistService {
         List<Artist> artists = artistRepo.findByName(name);
         return artists.stream().map(artistMapper::toArtistResponse).toList();
     }
+
+    public ArtistResponse getArtistById(Long id) {
+        Artist artist = artistRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.ARTIST_NOT_FOUND));
+        return artistMapper.toArtistResponse(artist);
+    }
 }

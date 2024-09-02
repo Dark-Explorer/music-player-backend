@@ -27,6 +27,12 @@ public class SongService {
     SongMapper songMapper;
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    public List<SongResponse> getAllSongs() {
+        List<Song> songs = songRepo.findAll();
+        return songs.stream().map(songMapper::toSongResponse).toList();
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     public SongResponse createSong(SongRequest request) {
         Song song = songMapper.toSong(request);
 
