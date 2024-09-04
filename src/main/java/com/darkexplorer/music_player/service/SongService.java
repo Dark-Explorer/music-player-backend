@@ -1,11 +1,14 @@
 package com.darkexplorer.music_player.service;
 
+import com.darkexplorer.music_player.dto.request.ArtistRequest;
 import com.darkexplorer.music_player.dto.request.SongRequest;
+import com.darkexplorer.music_player.dto.response.ArtistResponse;
 import com.darkexplorer.music_player.dto.response.SongResponse;
 import com.darkexplorer.music_player.entity.Artist;
 import com.darkexplorer.music_player.entity.Song;
 import com.darkexplorer.music_player.exception.AppException;
 import com.darkexplorer.music_player.exception.ErrorCode;
+import com.darkexplorer.music_player.mapper.ArtistMapper;
 import com.darkexplorer.music_player.mapper.SongMapper;
 import com.darkexplorer.music_player.repository.IArtistRepo;
 import com.darkexplorer.music_player.repository.ISongRepo;
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +30,7 @@ public class SongService {
     ISongRepo songRepo;
     IArtistRepo artistRepo;
     SongMapper songMapper;
+    ArtistMapper artistMapper;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<SongResponse> getAllSongs() {
@@ -46,10 +52,17 @@ public class SongService {
 //                    .orElseThrow(() -> new AppException(ErrorCode.ARTIST_NOT_FOUND));
 //            song.getArtists().add(artist);
 //        }
-        var artists = artistRepo.findAllById(request.getArtistsId());
-        song.setArtists(new HashSet<>(artists));
-
-        song = songRepo.save(song);
+        Set<Artist> artists = new HashSet<>();
+        for (ArtistResponse artist : request.getArtists()) {
+            artists.add(artistMapper.responseToArtist(artist));
+            System.out.println(artist);
+        }
+        song.setArtists(artists);
+        try {
+            song = songRepo.save(song);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return songMapper.toSongResponse(song);
     }
 
@@ -60,9 +73,7 @@ public class SongService {
         song.setTitle(request.getTitle());
         song.setImage(request.getImage());
         song.setSound_link(request.getSound_link());
-
-        var artists = artistRepo.findAllById(request.getArtistsId());
-        song.setArtists(new HashSet<>(artists));
+        song.setArtists(request.getArtists().stream().map(artistMapper::responseToArtist).collect(Collectors.toSet()));
 
         song = songRepo.save(song);
         return songMapper.toSongResponse(song);

@@ -1,5 +1,6 @@
 package com.darkexplorer.music_player.dto.request;
 
+import com.darkexplorer.music_player.dto.response.ArtistResponse;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,5 +15,5 @@ public class SongRequest {
     String title;
     String image;
     String sound_link;
-    Set<Long> artistsId;
+    Set<ArtistResponse> artists;
 }

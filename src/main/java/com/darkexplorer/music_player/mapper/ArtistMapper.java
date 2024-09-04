@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ArtistMapper {
     Artist toArtist(ArtistRequest request);
+    Artist responseToArtist(ArtistResponse response);
     ArtistResponse toArtistResponse(Artist artist);
 }
