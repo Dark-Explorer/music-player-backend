@@ -13,4 +13,5 @@ public class ArtistResponse {
     String name;
     String gender;
     int yob;
+    String image;
 }

@@ -14,4 +14,5 @@ public class ArtistRequest {
     String name;
     String gender;
     int yob;
+    String image;
 }

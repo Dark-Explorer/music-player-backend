@@ -22,6 +22,7 @@ public class Artist {
     String name;
     String gender;
     int yob;
+    String image;
 
     @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "artists")
     Set<Song> songs = new HashSet<>();

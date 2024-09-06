@@ -40,6 +40,7 @@ public class ArtistService {
         artist.setName(request.getName());
         artist.setGender(request.getGender());
         artist.setYob(request.getYob());
+        artist.setImage(request.getImage());
         artist = artistRepo.save(artist);
         return artistMapper.toArtistResponse(artist);
     }
