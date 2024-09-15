@@ -51,7 +51,7 @@ public class ArtistService {
     }
 
     public List<ArtistResponse> getArtistByName(String name) {
-        List<Artist> artists = artistRepo.getArtistsByNameContaining(name);
+        List<Artist> artists = artistRepo.getArtistsByNameContainingIgnoreCase(name);
         return artists.stream().map(artistMapper::toArtistResponse).toList();
     }
 

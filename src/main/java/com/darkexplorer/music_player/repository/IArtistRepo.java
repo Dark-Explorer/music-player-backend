@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IArtistRepo extends JpaRepository<Artist, Long> {
-    List<Artist> getArtistsByNameContaining(String name);
+    List<Artist> getArtistsByNameContainingIgnoreCase(String name);
 
 }
