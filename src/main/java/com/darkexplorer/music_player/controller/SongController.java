@@ -27,6 +27,13 @@ public class SongController {
                 .build();
     }
 
+    @GetMapping("/{songId}")
+    ApiResponse<SongResponse> getSongById(@PathVariable Long songId) {
+        return ApiResponse.<SongResponse>builder()
+                .result(songService.getSongById(songId))
+                .build();
+    }
+
     @PostMapping
     ApiResponse<SongResponse> createSong(@RequestBody SongRequest request) {
         return ApiResponse.<SongResponse>builder()
@@ -49,7 +56,7 @@ public class SongController {
                 .build();
     }
 
-    @GetMapping("/{artistId}")
+    @GetMapping("/{artistId}/songs")
     ApiResponse<List<SongResponse>> getSongsByArtist(@PathVariable Long artistId) {
         return ApiResponse.<List<SongResponse>>builder()
                 .result(songService.getAllSongsByArtist(artistId))

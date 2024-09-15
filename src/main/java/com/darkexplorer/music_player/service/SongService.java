@@ -32,10 +32,14 @@ public class SongService {
     SongMapper songMapper;
     ArtistMapper artistMapper;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<SongResponse> getAllSongs() {
         List<Song> songs = songRepo.findAll();
         return songs.stream().map(songMapper::toSongResponse).toList();
+    }
+
+    public SongResponse getSongById(Long id) {
+        Song song = songRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.SONG_NOT_FOUND));
+        return songMapper.toSongResponse(song);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IArtistRepo extends JpaRepository<Artist, Long> {
-    @Query("select a from Artist a where a.name like %?1%")
-    List<Artist> findByName(String name);
+    List<Artist> getArtistsByNameContaining(String name);
+
 }

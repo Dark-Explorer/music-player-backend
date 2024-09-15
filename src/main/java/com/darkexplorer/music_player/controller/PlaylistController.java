@@ -41,6 +41,13 @@ public class PlaylistController {
                 .build();
     }
 
+    @GetMapping("/{playlistId}")
+    ApiResponse<PlaylistResponse> getPlaylistById(@PathVariable Long playlistId) {
+        return ApiResponse.<PlaylistResponse>builder()
+                .result(playlistService.getPlaylistById(playlistId))
+                .build();
+    }
+
     @GetMapping
     ApiResponse<List<PlaylistResponse>> getPlaylistsByName(@RequestParam String name) {
         return ApiResponse.<List<PlaylistResponse>>builder()

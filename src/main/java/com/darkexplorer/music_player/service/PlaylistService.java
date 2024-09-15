@@ -65,6 +65,11 @@ public class PlaylistService {
         } else throw new AppException(ErrorCode.UNAUTHORIZED);
     }
 
+    public PlaylistResponse getPlaylistById(Long id) {
+        Playlist playlist = playlistRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.PLAYLIST_NOT_FOUND));
+        return playlistMapper.toPlaylistResponse(playlist);
+    }
+
     public List<PlaylistResponse> getPlaylistsByName(String name) {
         List<Playlist> playlists = playlistRepo.findPlaylistByNameContainingIgnoreCase(name);
         return playlists.stream().map(playlistMapper::toPlaylistResponse).toList();

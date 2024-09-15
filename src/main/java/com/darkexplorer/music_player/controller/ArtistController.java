@@ -55,7 +55,7 @@ public class ArtistController {
                 .build();
     }
 
-    @GetMapping("/{artistId}")
+    @GetMapping("/info/{artistId}")
     ApiResponse<ArtistResponse> getArtistById(@PathVariable Long artistId) {
         return ApiResponse.<ArtistResponse>builder()
                 .result(artistService.getArtistById(artistId))
